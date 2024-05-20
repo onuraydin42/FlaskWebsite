@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% include "header.html" %}
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Menü</p>
+                    <h2>Menümüz</h2>
+                </div>
+                <div class="menu-tab">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#burgers">Burgerler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#snacks">Atıştırmalıklar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#beverages">İçecekler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#special">Özel Günler İçin Önerilemiz</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="burgers" class="container tab-pane active">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Cheese Burger</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Double Burger</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>EGG and Cheese Burger</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Smoke Burger</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Tavuk Burger</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-burger-img.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="snacks" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-snack-img.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="beverages" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-beverage-img.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="special" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

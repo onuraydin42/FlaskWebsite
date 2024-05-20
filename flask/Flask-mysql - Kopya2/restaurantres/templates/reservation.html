@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% include "header.html" %}
+
+        <div class="booking">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="booking-content">
+                            <div class="section-header">
+                                <p>Rezervasyon Yap</p>
+                            </div>
+                            <div class="about-text">
+                                <img src="{{ url_for('static', filename='img/restoranw.png') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="booking-form">
+                            <div class="section-header">
+                                <p></p>
+                            </div>
+                            <form action="/api/reservations/addReservation" method="POST">
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="tel" id="user_id" name="user_id" class="form-control" placeholder="Kullanıcı id" required/>
+                                        <div class="input-group-append">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="tel" id="phonenumber" name="phonenumber" class="form-control" placeholder="Telefon Numarası" required="required" />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group date" id="date" data-target-input="nearest">
+                                        <input type="text" id="date" name="date" class="form-control datetimepicker-input" placeholder="Tarih" data-target="#date" data-toggle="datetimepicker"/>
+                                        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+                                            <div class="input-group-text"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group time" id="time" data-target-input="nearest">
+                                        <input type="text" id="time" name="time" class="form-control datetimepicker-input"  data-target="Saat" data-toggle="datetimepicker"/>
+                                        <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+                                            <div class="input-group-text"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="number" id="guests" name="guests" class="form-control" placeholder="Davetliler" required />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="number" id="tablenum" name="tablenum" class="form-control" placeholder="Masa numarası" required />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <button class="btn custom-btn" type="submit">Rezervasyon Yap</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,6 +1,11 @@
 from flask import Flask, jsonify, Blueprint, request, redirect
 from restaurantres.models import User
 from werkzeug.security import generate_password_hash
+from flask_login import login_user, logout_user
+from flask import redirect
+from flask import flash
+from flask_login import current_user, login_required
+
 
 
 apiUsers = Blueprint("apiUser", __name__, url_prefix="/api/users")
@@ -165,3 +170,28 @@ def activeUsers():
     except Exception as e:
         #print("Error: ", e)
         return jsonify({"success": False, "message": "Beklenmedik bir hata meydana geldi!"})
+
+@apiUsers.route('/login', methods=['POST'])
+def login():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = User.query.filter_by(email=email).first()
+    if user is not None and user.check_password(password):
+        login_user(user)
+        return redirect("/api/users/dashboard", code=302)
+    
+    flash("Email veya parolanızı hatalı girdiniz.Lütfen tekrar deneyin", "error")
+    
+    return redirect("/login.html", code=302)
+
+@apiUsers.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/login.html", code=302)
+
+@apiUsers.route("/dashboard")
+@login_required
+def dashboard():
+    return redirect("/dashboard.html", code=302)

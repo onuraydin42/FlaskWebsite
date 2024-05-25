@@ -1,9 +1,12 @@
 from dataclasses import dataclass
 from restaurantres import db
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash
+
 
 #------------------------------------------------------------------------------------------------
 @dataclass
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -63,6 +66,13 @@ class User(db.Model):
     @classmethod
     def get_deactive_users(cls):
         return cls.query.filter_by(activated=False).all()
+    
+    @property
+    def is_active(self):
+        return self.activated
+    
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 #------------------------------------------------------------------------------------------------
 @dataclass

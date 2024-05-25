@@ -15,6 +15,7 @@
         <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
         <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     </head>
@@ -33,10 +34,18 @@
                         <a href="about.html" class="nav-item nav-link">Hakkımızda</a>
                         <a href="exp.html" class="nav-item nav-link">Değerlendirmeler</a>
                         <a href="menu.html" class="nav-item nav-link">Menü</a>
-                        <a href="reservation.html" class="nav-item nav-link">Rezervasyon Yap</a>
-                        <a href="myreservations.html" class="nav-item nav-link">Rezervasyonlarım</a>
                         <a href="contact.html" class="nav-item nav-link">İletişim</a>
+
+                        <!-- KULLANICI EĞER GİRİŞ YAPABİLDİYSE AKTİF OLAN NAVBAR KISIMLARI -->
+                        {% if current_user.is_authenticated %}
+                        <a href="myreservations.html" class="nav-item nav-link">Rezervasyonlarım</a>
+                        <a href="reservation.html" class="nav-item nav-link">Rezervasyon Yap</a>
+                        <a href="dashboard.html" class="nav-item nav-link">Profil</a>
+                        {% else %}
                         <a href="login.html" class="nav-item nav-link">Giriş Yap/Kayıt Ol</a>
+                        {% endif %}
+
+                        
                     </div>
                 </div>
             </div>
@@ -110,5 +119,9 @@
         <script src="{{ url_for('static', filename='mail/contact.js') }}"></script>
 
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>

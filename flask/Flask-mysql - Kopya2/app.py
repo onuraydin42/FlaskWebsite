@@ -7,13 +7,22 @@ from api.admins import apiAdmins
 from api.categories import apiCategories
 from api.reservations import apiReservations
 
+
 from restaurantres import createApp
 from restaurantres.initialize_db import createDB
+from restaurantres.models import User
+
+from flask_login import LoginManager
+from flask_login import login_required
 
 
 app = createApp()
 CORS(app)
 createDB()
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 #kayıt kısmı
 
 app.register_blueprint(apiUsers)
@@ -22,7 +31,9 @@ app.register_blueprint(apiAdmins)
 app.register_blueprint(apiCategories)
 app.register_blueprint(apiReservations)
 
-
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route("/")
 def index():
@@ -45,10 +56,12 @@ def about():
     return render_template("about.html")
 
 @app.route("/reservation.html")
+@login_required
 def reservation():
     return render_template("reservation.html")
 
 @app.route("/myreservations.html")
+@login_required
 def myreservations():
     return render_template("myreservations.html")
 
@@ -73,8 +86,11 @@ def register():
     return render_template("register.html")
 
 @app.route("/dashboard.html")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
+
+
 
 
 if __name__ == "__main__":

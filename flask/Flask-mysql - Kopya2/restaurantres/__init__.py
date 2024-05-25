@@ -7,7 +7,7 @@ db = SQLAlchemy()
 def createApp():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:1234@localhost/restaurantres'
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config['SECRET_KEY'] = '1234'
 
     db.init_app(app)
     CORS(app)

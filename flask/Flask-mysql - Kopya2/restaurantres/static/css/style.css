@@ -1965,3 +1965,7 @@ a:focus {
 .footer .copyright p a:hover {
     color: #719a0a;
 }
+
+.panel {
+    background-color: #fbaf32;
+}

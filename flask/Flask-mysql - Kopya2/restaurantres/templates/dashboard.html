@@ -2,12 +2,27 @@
 {% block content %}
 {% include "header.html" %}
 
-
-
-
-
-
-
-
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card panel">
+                <div class="contact">
+                    <div class="container">
+                        <div class="section-header text-center">
+                            <h2 class="text-center">PROFİL</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>User ID:</strong> {{ current_user.id }}</p>
+                    <p><strong>Username:</strong> {{ current_user.username }}</p>
+                    <p><strong>Email:</strong> {{ current_user.email }}</p>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-dark btn-lg btn-block" onclick="location.href='api/users/logout'">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

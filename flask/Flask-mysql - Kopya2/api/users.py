@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user
 from flask import redirect
 from flask import flash
 from flask_login import current_user, login_required
+from flask import session
 
 
 
@@ -179,6 +180,7 @@ def login():
     user = User.query.filter_by(email=email).first()
     if user is not None and user.check_password(password):
         login_user(user)
+        session['user_id'] = user.id
         return redirect("/api/users/dashboard", code=302)
     
     flash("Email veya parolanızı hatalı girdiniz.Lütfen tekrar deneyin", "error")

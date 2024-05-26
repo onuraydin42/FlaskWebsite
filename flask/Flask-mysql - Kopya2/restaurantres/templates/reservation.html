@@ -24,7 +24,7 @@
                             <form action="/api/reservations/addReservation" method="POST">
                                 <div class="control-group">
                                     <div class="input-group">
-                                        <input type="tel" id="user_id" name="user_id" class="form-control" placeholder="Kullanıcı id" required/>
+                                        <input type="tel" id="user_id" name="user_id" class="form-control" value="{{ session['user_id'] }}" required readonly/>
                                         <div class="input-group-append">
                                         </div>
                                     </div>

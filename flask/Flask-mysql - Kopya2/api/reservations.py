@@ -1,5 +1,8 @@
 from flask import Flask, jsonify, Blueprint, request, redirect
 from restaurantres.models import Reservation
+from flask import render_template
+from flask import session
+
 
 apiReservations = Blueprint("apiReservations", __name__, url_prefix="/api/reservations")
 
@@ -42,8 +45,7 @@ def add_reservation():
             return jsonify({"success": False, "message": "Lütfen masa numarasını giriniz!"})
         
         Reservation.add_reservation(user_id, phonenumber, date, time, guests, tablenum)
-
-        return redirect("/myreservations.html", code=302)
+        return redirect("/api/reservations/reserve", code=302)
     
     except Exception as e:
         print("Error: in add_reservation", e)
@@ -103,4 +105,13 @@ def reservation(id):
         return jsonify({"success": False, "message": "Beklenmedik bir hata meydana geldi!"})
     
     return jsonify({"success": False, "message": "Invalid request method"})
+
+
+@apiReservations.route("/reserve", methods=["GET"])
+def myreservations():
+    user_id = session.get('user_id')
+    reservations = Reservation.get_reservations_by_user_id(user_id)
+    return render_template("/myreservations.html", reservations=reservations)
+
+
 

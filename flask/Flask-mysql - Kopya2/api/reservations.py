@@ -2,6 +2,11 @@ from flask import Flask, jsonify, Blueprint, request, redirect
 from restaurantres.models import Reservation
 from flask import render_template
 from flask import session
+from restaurantres.models import User
+from flask import flash
+from datetime import datetime, timedelta
+from restaurantres.models import Reservation
+
 
 
 apiReservations = Blueprint("apiReservations", __name__, url_prefix="/api/reservations")
@@ -30,6 +35,8 @@ def add_reservation():
         time = request.form.get("time")
         guests = request.form.get("guests")
         tablenum = request.form.get("tablenum")
+        
+        reservation_date = datetime.strptime(date, "%m/%d/%Y")  # Tarih formatınız ne ise ona göre ayarlayın
 
         if user_id == None:
             return jsonify({"success": False, "message": "Lütfen bir user id giriniz!"})
@@ -43,6 +50,15 @@ def add_reservation():
             return jsonify({"success": False, "message": "Lütfen misafir sayısını giriniz!"})
         if tablenum == None:
             return jsonify({"success": False, "message": "Lütfen masa numarasını giriniz!"})
+        
+        if reservation_date.date() < datetime.now().date():
+            flash("Gecmis bir tarih secilemez!")
+            return redirect("/reservation.html", code=302)
+        
+        if Reservation.is_table_reserved(date, time, tablenum):
+            flash("Bu masa o gün o saate zaten rezerve edilmis!")
+            return redirect("/reservation.html", code=302)
+        
         
         Reservation.add_reservation(user_id, phonenumber, date, time, guests, tablenum)
         return redirect("/api/reservations/reserve", code=302)
@@ -114,4 +130,17 @@ def myreservations():
     return render_template("/myreservations.html", reservations=reservations)
 
 
+@apiReservations.route("/rate/<int:id>", methods=["POST"])
+def rate_reservation(id):
+    rating = request.form.get('rating')
+    comment = request.form.get('comment')
+    Reservation.update_reservation_rating_comment(id, rating=rating, comment=comment)
+    return redirect('/api/reservations/reserve')
 
+
+    
+@apiReservations.route("/price", methods=["GET"])
+def get_price():
+    price_level = Reservation.determine_price_level()
+    price = Reservation.calculate_price(price_level)
+    return jsonify({"price": price})

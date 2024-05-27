@@ -219,9 +219,11 @@ class Reservation(db.Model):
     time = db.Column(db.String(120))
     guests = db.Column(db.Integer)
     tablenum= db.Column(db.Integer)
+    rating = db.Column(db.Integer)
+    comment = db.Column(db.String(500))
 
 
-    def __init__(self, id, user_id, phonenumber, date, time, guests, tablenum):
+    def __init__(self, id, user_id, phonenumber, date, time, guests, tablenum, rating, comment):
         self.id = id
         self.user_id = user_id
         self.phonenumber = phonenumber
@@ -229,6 +231,8 @@ class Reservation(db.Model):
         self.time = time
         self.guests = guests
         self.tablenum = tablenum
+        self.rating = rating
+        self.comment = comment
 
     @classmethod
     def get_all_reservations(cls):
@@ -239,20 +243,16 @@ class Reservation(db.Model):
         return cls.query.filter_by(id=id).first()
     
     @classmethod
-    def add_reservation(cls, user_id, phonenumber, date, time, guests, tablenum):
-        reservation = cls(None, user_id, phonenumber, date, time, guests, tablenum)
+    def add_reservation(cls, user_id, phonenumber, date, time, guests, tablenum, rating=None, comment=None):
+        reservation = cls(None, user_id, phonenumber, date, time, guests, tablenum, rating, comment)
         db.session.add(reservation)
         db.session.commit()
     
     @classmethod
-    def update_reservation(cls, id, user_id, phonenumber, date, time, guests, tablenum):
+    def update_reservation_rating_comment(cls, id, rating, comment):
         reservation = cls.query.filter_by(id=id).first()
-        reservation.user_id = user_id
-        reservation.phonenumber = phonenumber
-        reservation.date = date
-        reservation.time = time
-        reservation.guests = guests
-        reservation.tablenum = tablenum
+        reservation.rating = rating
+        reservation.comment = comment
         db.session.commit()
 
     @classmethod
@@ -265,3 +265,30 @@ class Reservation(db.Model):
     @classmethod
     def get_reservations_by_user_id(cls, user_id):
         return cls.query.filter_by(user_id=user_id).all()
+    
+    @classmethod
+    def is_table_reserved(cls, date, time, tablenum):
+        reservation = cls.query.filter_by(date=date, time=time, tablenum=tablenum).first()
+        return reservation is not None
+    
+    
+
+    @classmethod
+    def determine_price_level(cls):
+        density = cls.query.count()
+        if density < 10:
+            return "low"
+        elif density < 20:
+            return "medium"
+        else:
+            return "high"
+    
+    @classmethod
+    def calculate_price(cls,price_level):
+        if price_level == "low":
+            return 100
+        elif price_level == "medium":
+            return 200
+        else:
+            return 300
+

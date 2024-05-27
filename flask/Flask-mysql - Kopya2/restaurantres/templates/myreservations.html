@@ -4,8 +4,8 @@
 
 
 <style>
-    body{margin-top:20px;
-        background-color:#eee;
+    body{margin-top:px;
+        background-color:hsl(0, 0%, 93%);
         }
         .project-list-table {
             border-collapse: separate;
@@ -114,6 +114,9 @@
                                     <th scope="col">Masa Numarası</th>
                                     <th scope="col">Kayıtlı Telefon Numarası</th>
                                     <th scope="col">Sil</th>
+                                    <th scope="col">Puanla 1/5</th>
+                                    <th scope="col">Yorum Yap</th>
+                                    <th scope="col">Puan ve Yorumu Gönder</th>
                                 </tr>
                             </thead>
                             {% for reservation in reservations %}
@@ -132,6 +135,21 @@
                                                 </li>
                                             </ul>
                                         </td>
+                                        <form method="POST" action="/api/reservations/rate/{{ reservation.id }}">
+                                            <td>
+                                                <div class="rating-form">
+                                                    <input type="number" id="rating" name="rating" min="1" max="5" required value="{{ reservation.rating }}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="comment-form">
+                                                    <textarea id="comment" name="comment" required>{{ reservation.comment }}</textarea>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="submit" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary">Gönder</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 </tbody>
                             {% endfor %}

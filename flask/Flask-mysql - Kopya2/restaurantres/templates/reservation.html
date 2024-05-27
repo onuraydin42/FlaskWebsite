@@ -19,7 +19,15 @@
                     <div class="col-lg-5">
                         <div class="booking-form">
                             <div class="section-header">
-                                <p></p>
+                                {% with messages = get_flashed_messages() %}
+                                    {% if messages %}
+                                      <ul class="flashes">
+                                      {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                      {% endfor %}
+                                      </ul>
+                                    {% endif %}
+                                  {% endwith %}
                             </div>
                             <form action="/api/reservations/addReservation" method="POST">
                                 <div class="control-group">

@@ -3,6 +3,17 @@
 
 
 {% include "header.html" %}
+
+<script>
+    fetch('/api/reservations/price')
+  .then(response => response.json())
+  .then(data => {
+    for(let i = 1; i <= 35; i++) {
+      document.getElementById('price' + i).textContent = data.price;
+    }
+  });
+</script>
+
         <div class="menu">
             <div class="container">
                 <div class="section-header text-center">
@@ -33,7 +44,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Cheese Burger</span> <strong>200TL</strong></h3>
+                                            <h3><span>Cheese Burger</span><strong id="price1"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -42,7 +53,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Double Burger</span> <strong>200TL</strong></h3>
+                                            <h3><span>Double Burger</span><strong id="price2"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -51,7 +62,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>EGG and Cheese Burger</span> <strong>200TL</strong></h3>
+                                            <h3><span>EGG and Cheese Burger</span><strong id="price3"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -60,7 +71,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Smoke Burger</span> <strong>200TL</strong></h3>
+                                            <h3><span>Smoke Burger</span><strong id="price4"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -69,7 +80,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Tavuk Burger</span> <strong>200TL</strong></h3>
+                                            <h3><span>Tavuk Burger</span><strong id="price5"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -87,7 +98,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price6"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -96,7 +107,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price7"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -105,7 +116,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price8"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -114,7 +125,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price9"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -132,7 +143,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price10"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -141,7 +152,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price11"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -150,7 +161,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price12"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -159,7 +170,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price13"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -168,7 +179,7 @@
                                             <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price14"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -187,7 +198,7 @@
                                             <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price15"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -196,7 +207,7 @@
                                             <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price16"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -205,7 +216,7 @@
                                             <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price17"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -214,7 +225,7 @@
                                             <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price18"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>
@@ -223,7 +234,7 @@
                                             <img src="{{ url_for('static', filename='img/menuburger.jpg') }}" alt="Image">
                                         </div>
                                         <div class="menu-text">
-                                            <h3><span>Lorem, ipsum dolor.</span> <strong>200TL</strong></h3>
+                                            <h3><span>Lorem, ipsum dolor.</span><strong id="price19"></strong><strong>TL</strong></h3>
                                             <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
                                         </div>
                                     </div>

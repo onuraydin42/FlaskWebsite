@@ -1969,3 +1969,16 @@ a:focus {
 .panel {
     background-color: #fbaf32;
 }
+
+
+
+.rating-comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.rating-comment-form label, 
+.rating-comment-form input, 
+.rating-comment-form textarea {
+    width: 100%;
+}

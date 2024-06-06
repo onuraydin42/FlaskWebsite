@@ -140,7 +140,15 @@
                 });
             });
         </script>
-
-
+    <script>
+        document.getElementById('ai-table-select').addEventListener('click', function() {
+            var guests = document.getElementById('guests').value;
+            fetch('/api/reservations/predicted_tablenum/' + guests)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('tablenum').value = data.predicted_tablenum;
+                });
+        });
+    </script>
     </body>
 </html>

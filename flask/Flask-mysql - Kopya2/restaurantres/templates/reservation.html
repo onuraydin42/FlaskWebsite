@@ -10,6 +10,7 @@
                         <div class="booking-content">
                             <div class="section-header">
                                 <p>Rezervasyon Yap</p>
+                                <button class="btn custom-btn" id="ai-table-select">AI ile Masa Ata</button>
                             </div>
                             <div class="about-text">
                                 <img src="{{ url_for('static', filename='img/restoranw.png') }}">
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="control-group">
                                     <div class="input-group">
-                                        <input type="tel" id="phonenumber" name="phonenumber" class="form-control" placeholder="Telefon Numarası" required="required" />
+                                        <input type="tel" id="phonenumber" name="phonenumber" class="form-control" placeholder="Telefon Numarası" required="required" pattern="\d{10}" title="Lütfen 10 haneli bir telefon numarası girin."/>
                                         <div class="input-group-append">
                                             <div class="input-group-text"></i></div>
                                         </div>
@@ -53,9 +54,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- SAAT BİLGİSİ -->
                                 <div class="control-group">
                                     <div class="input-group time" id="time" data-target-input="nearest">
-                                        <input type="text" id="time" name="time" class="form-control datetimepicker-input"  data-target="Saat" data-toggle="datetimepicker"/>
+                                        <input type="time" id="time" name="time" class="form-control datetimepicker-input" data-target="Saat" data-toggle="datetimepicker" oninput="forceMinutesToZero(this)" title="Lütfen sadece saat başı zamanları seçin. Dakika otomatik olarak 00 olarak ayarlanacaktır."/>
                                         <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
                                             <div class="input-group-text"></i></div>
                                         </div>
@@ -63,27 +65,42 @@
                                 </div>
                                 <div class="control-group">
                                     <div class="input-group">
-                                        <input type="number" id="guests" name="guests" class="form-control" placeholder="Davetliler" required />
-                                        <div class="input-group-append">
-                                            <div class="input-group-text"></i></div>
-                                        </div>
+                                        <input type="number" id="guests" name="guests" class="form-control" placeholder="Davetliler" min="1" max="5" required />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="input-group">
-                                        <input type="number" id="tablenum" name="tablenum" class="form-control" placeholder="Masa numarası" required />
+                                        <input type="number" id="tablenum" name="tablenum" class="form-control" required />
                                         <div class="input-group-append">
                                             <div class="input-group-text"></i></div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Script moved to the end of the body -->
+                                <script>
+                                function forceMinutesToZero(timeInput) {
+                                    var timeParts = timeInput.value.split(":");
+                                    if (timeParts[1] !== "00") {
+                                        timeInput.value = timeParts[0] + ":00";
+                                    }
+                                }
+                                </script>
                                     <button class="btn custom-btn" type="submit">Rezervasyon Yap</button>
                                 </div>
+                                <script>
+                                    document.getElementById('ai-table-select').addEventListener('click', function() {
+                                        var guestsInput = document.getElementById('guests');
+                                        if (!guestsInput.value) {
+                                            alert('Lütfen bir davetli sayısı giriniz!');
+                                        }
+                                    });
+                                    </script>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 {% endblock %}

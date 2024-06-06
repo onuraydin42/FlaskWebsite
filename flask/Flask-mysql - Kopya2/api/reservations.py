@@ -7,6 +7,10 @@ from flask import flash
 from datetime import datetime, timedelta
 from restaurantres.models import Reservation
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
 
 
 apiReservations = Blueprint("apiReservations", __name__, url_prefix="/api/reservations")
@@ -144,3 +148,36 @@ def get_price():
     price_level = Reservation.determine_price_level()
     price = Reservation.calculate_price(price_level)
     return jsonify({"price": price})
+
+#------- AI TABANLI MASA SEÇME ------------ #
+
+# Veritabanından verileri alın
+
+from restaurantres import createApp
+
+app = createApp()
+
+with app.app_context():
+    reservations = Reservation.get_all_reservations()
+
+# Verileri bir DataFrame'e dönüştürün
+data = pd.DataFrame([(r.guests, r.tablenum) for r in reservations], columns=['guests', 'tablenum'])
+
+# Verileri özellikler (X) ve hedef (y) olarak ayırın
+X = data[['guests']]
+y = data['tablenum']
+
+# Verileri eğitim ve test setlerine ayırın
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Bir model oluşturun ve eğitin
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+
+@apiReservations.route("/predicted_tablenum/<int:guests>", methods=["GET"])
+def get_predicted_tablenum(guests):
+    predict_data = pd.DataFrame([[guests]], columns=['guests'])
+    raw_prediction = model.predict(predict_data)
+    predicted_tablenum = min(max(1, round(raw_prediction[0])), 35)
+    return jsonify(predicted_tablenum=predicted_tablenum)

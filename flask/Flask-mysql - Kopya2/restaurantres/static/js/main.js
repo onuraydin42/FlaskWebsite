@@ -1,7 +1,6 @@
 (function ($) {
     "use strict";
     
-    // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
             $('.back-to-top').fadeIn('slow');
@@ -15,7 +14,6 @@
     });
     
     
-    // Sticky Navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
             $('.navbar').addClass('nav-sticky');
@@ -25,7 +23,6 @@
     });
     
     
-    // Dropdown on mouse hover
     $(document).ready(function () {
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
@@ -43,7 +40,6 @@
     });
 
     
-    // Main carousel
     $(".carousel .owl-carousel").owlCarousel({
         autoplay: true,
         animateOut: 'fadeOut',
@@ -55,7 +51,6 @@
         nav : false
     });
     
-    // Modal Video
     $(document).ready(function () {
         var $videoSrc;
         $('.btn-play').click(function () {
@@ -73,7 +68,6 @@
     });
     
     
-    // Date and time picker
     $('#date').datetimepicker({
         format: 'L'
     });
@@ -82,7 +76,6 @@
     });
 
 
-    // Testimonials carousel
     $(".testimonials-carousel").owlCarousel({
         center: true,
         autoplay: true,
@@ -105,7 +98,6 @@
     });
     
     
-    // Related post carousel
     $(".related-slider").owlCarousel({
         autoplay: true,
         dots: false,

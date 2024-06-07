@@ -1,5 +1,4 @@
-from flask import Flask, render_template
-from flask_cors import CORS
+from flask import render_template
 
 from api.users import apiUsers
 from api.products import apiProducts
@@ -7,22 +6,26 @@ from api.admins import apiAdmins
 from api.categories import apiCategories
 from api.reservations import apiReservations
 
-
-from restaurantres import createApp
+from flask_login import LoginManager
+from flask_login import login_required
 from restaurantres.initialize_db import createDB
 from restaurantres.models import User
 
-from flask_login import LoginManager
-from flask_login import login_required
 
+from restaurantres import createApp
+from flask_cors import CORS
 
 app = createApp()
 CORS(app)
+
+
 createDB()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+
 #kayıt kısmı
 
 app.register_blueprint(apiUsers)
@@ -89,8 +92,6 @@ def register():
 @login_required
 def dashboard():
     return render_template("dashboard.html")
-
-
 
 
 if __name__ == "__main__":

@@ -1,10 +1,9 @@
-from flask import Flask, jsonify, Blueprint, request, redirect
+from flask import jsonify, Blueprint, request, redirect
 from restaurantres.models import Reservation
 from flask import render_template
 from flask import session
-from restaurantres.models import User
 from flask import flash
-from datetime import datetime, timedelta
+from datetime import datetime
 from restaurantres.models import Reservation
 
 import pandas as pd
@@ -40,7 +39,7 @@ def add_reservation():
         guests = request.form.get("guests")
         tablenum = request.form.get("tablenum")
         
-        reservation_date = datetime.strptime(date, "%m/%d/%Y")  # Tarih formatınız ne ise ona göre ayarlayın
+        reservation_date = datetime.strptime(date, "%m/%d/%Y")
 
         if user_id == None:
             return jsonify({"success": False, "message": "Lütfen bir user id giriniz!"})
@@ -151,8 +150,6 @@ def get_price():
 
 #------- AI TABANLI MASA SEÇME ------------ #
 
-# Veritabanından verileri alın
-
 from restaurantres import createApp
 
 app = createApp()
@@ -160,17 +157,13 @@ app = createApp()
 with app.app_context():
     reservations = Reservation.get_all_reservations()
 
-# Verileri bir DataFrame'e dönüştürün
 data = pd.DataFrame([(r.guests, r.tablenum) for r in reservations], columns=['guests', 'tablenum'])
 
-# Verileri özellikler (X) ve hedef (y) olarak ayırın
 X = data[['guests']]
 y = data['tablenum']
 
-# Verileri eğitim ve test setlerine ayırın
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Bir model oluşturun ve eğitin
 model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 

@@ -1,13 +1,11 @@
-from flask import Flask, jsonify, Blueprint, request, redirect
+from flask import jsonify, Blueprint, request, redirect
 from restaurantres.models import User
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user
 from flask import redirect
 from flask import flash
-from flask_login import current_user, login_required
+from flask_login import login_required
 from flask import session
-
-
 
 apiUsers = Blueprint("apiUser", __name__, url_prefix="/api/users")
 
@@ -57,7 +55,7 @@ def user(id):
 
 
 
-            #Kullanıcı sadece !bir! verisini güncellemek istiyosa diye
+            #Kullanıcı sadece bir verisini güncellemek istiyosa diye
             if username is None:
                 username = user.username
             if email is None:
